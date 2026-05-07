@@ -32,7 +32,7 @@ function OverviewPage() {
     <div className="mx-auto max-w-7xl">
       <PageHeader
         eyebrow="Operations · Realtime"
-        title="Cold-chain command center"
+        title="Smart Fridge Management System"
         description="Continuous Arrhenius-based spoilage modelling across every item, with PID-tuned cooling and AI insight."
         action={
           <div className="flex items-center gap-2">

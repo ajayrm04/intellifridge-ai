@@ -133,9 +133,9 @@ function RootComponent() {
                 <span className="relative flex h-2 w-2 text-primary pulse-dot"><span className="absolute inset-0 rounded-full bg-primary" /></span>
                 <span>Live telemetry</span>
               </div>
-              <div className="ml-auto hidden text-[11px] text-muted-foreground sm:block">
+              {/* <div className="ml-auto hidden text-[11px] text-muted-foreground sm:block">
                 Lovable Cloud · Arrhenius engine v1
-              </div>
+              </div> */}
             </header>
             <main className="relative z-10 flex-1 p-4 sm:p-6 lg:p-8">
               <Outlet />
