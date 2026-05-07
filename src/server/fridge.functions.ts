@@ -1,7 +1,7 @@
 import { createServerFn } from "@tanstack/react-start";
 import { spoilageDelta, remainingHours, arrheniusRate, humidityFactor, pidStep } from "@/lib/spoilage";
 
-const getAdmin = async () => (await import("@/integrations/supabase/client.server")).supabaseAdmin;
+const getAdmin = async () => (await import("./db.server")).supabaseAdmin;
 
 // ---- Simulated reading generator (when no ESP32 is sending data) ----
 // Random walk anchored to target temp from system_settings, with PID-controlled compressor.
