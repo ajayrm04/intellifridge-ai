@@ -1,1 +1,0 @@
-export { supabaseAdmin } from "@/integrations/supabase/client.server";
