@@ -9,13 +9,23 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TwinRouteImport } from './routes/twin'
 import { Route as ShelfLifeRouteImport } from './routes/shelf-life'
 import { Route as SensorsRouteImport } from './routes/sensors'
+import { Route as PredictionsRouteImport } from './routes/predictions'
+import { Route as EnergyRouteImport } from './routes/energy'
 import { Route as ControlRouteImport } from './routes/control'
+import { Route as ArrheniusRouteImport } from './routes/arrhenius'
+import { Route as AlertsRouteImport } from './routes/alerts'
 import { Route as AiRouteImport } from './routes/ai'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiPublicIngestRouteImport } from './routes/api/public/ingest'
 
+const TwinRoute = TwinRouteImport.update({
+  id: '/twin',
+  path: '/twin',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShelfLifeRoute = ShelfLifeRouteImport.update({
   id: '/shelf-life',
   path: '/shelf-life',
@@ -26,9 +36,29 @@ const SensorsRoute = SensorsRouteImport.update({
   path: '/sensors',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PredictionsRoute = PredictionsRouteImport.update({
+  id: '/predictions',
+  path: '/predictions',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const EnergyRoute = EnergyRouteImport.update({
+  id: '/energy',
+  path: '/energy',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ControlRoute = ControlRouteImport.update({
   id: '/control',
   path: '/control',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ArrheniusRoute = ArrheniusRouteImport.update({
+  id: '/arrhenius',
+  path: '/arrhenius',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AlertsRoute = AlertsRouteImport.update({
+  id: '/alerts',
+  path: '/alerts',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AiRoute = AiRouteImport.update({
@@ -50,26 +80,41 @@ const ApiPublicIngestRoute = ApiPublicIngestRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/ai': typeof AiRoute
+  '/alerts': typeof AlertsRoute
+  '/arrhenius': typeof ArrheniusRoute
   '/control': typeof ControlRoute
+  '/energy': typeof EnergyRoute
+  '/predictions': typeof PredictionsRoute
   '/sensors': typeof SensorsRoute
   '/shelf-life': typeof ShelfLifeRoute
+  '/twin': typeof TwinRoute
   '/api/public/ingest': typeof ApiPublicIngestRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/ai': typeof AiRoute
+  '/alerts': typeof AlertsRoute
+  '/arrhenius': typeof ArrheniusRoute
   '/control': typeof ControlRoute
+  '/energy': typeof EnergyRoute
+  '/predictions': typeof PredictionsRoute
   '/sensors': typeof SensorsRoute
   '/shelf-life': typeof ShelfLifeRoute
+  '/twin': typeof TwinRoute
   '/api/public/ingest': typeof ApiPublicIngestRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/ai': typeof AiRoute
+  '/alerts': typeof AlertsRoute
+  '/arrhenius': typeof ArrheniusRoute
   '/control': typeof ControlRoute
+  '/energy': typeof EnergyRoute
+  '/predictions': typeof PredictionsRoute
   '/sensors': typeof SensorsRoute
   '/shelf-life': typeof ShelfLifeRoute
+  '/twin': typeof TwinRoute
   '/api/public/ingest': typeof ApiPublicIngestRoute
 }
 export interface FileRouteTypes {
@@ -77,39 +122,66 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/ai'
+    | '/alerts'
+    | '/arrhenius'
     | '/control'
+    | '/energy'
+    | '/predictions'
     | '/sensors'
     | '/shelf-life'
+    | '/twin'
     | '/api/public/ingest'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/ai'
+    | '/alerts'
+    | '/arrhenius'
     | '/control'
+    | '/energy'
+    | '/predictions'
     | '/sensors'
     | '/shelf-life'
+    | '/twin'
     | '/api/public/ingest'
   id:
     | '__root__'
     | '/'
     | '/ai'
+    | '/alerts'
+    | '/arrhenius'
     | '/control'
+    | '/energy'
+    | '/predictions'
     | '/sensors'
     | '/shelf-life'
+    | '/twin'
     | '/api/public/ingest'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AiRoute: typeof AiRoute
+  AlertsRoute: typeof AlertsRoute
+  ArrheniusRoute: typeof ArrheniusRoute
   ControlRoute: typeof ControlRoute
+  EnergyRoute: typeof EnergyRoute
+  PredictionsRoute: typeof PredictionsRoute
   SensorsRoute: typeof SensorsRoute
   ShelfLifeRoute: typeof ShelfLifeRoute
+  TwinRoute: typeof TwinRoute
   ApiPublicIngestRoute: typeof ApiPublicIngestRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/twin': {
+      id: '/twin'
+      path: '/twin'
+      fullPath: '/twin'
+      preLoaderRoute: typeof TwinRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shelf-life': {
       id: '/shelf-life'
       path: '/shelf-life'
@@ -124,11 +196,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SensorsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/predictions': {
+      id: '/predictions'
+      path: '/predictions'
+      fullPath: '/predictions'
+      preLoaderRoute: typeof PredictionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/energy': {
+      id: '/energy'
+      path: '/energy'
+      fullPath: '/energy'
+      preLoaderRoute: typeof EnergyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/control': {
       id: '/control'
       path: '/control'
       fullPath: '/control'
       preLoaderRoute: typeof ControlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/arrhenius': {
+      id: '/arrhenius'
+      path: '/arrhenius'
+      fullPath: '/arrhenius'
+      preLoaderRoute: typeof ArrheniusRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/alerts': {
+      id: '/alerts'
+      path: '/alerts'
+      fullPath: '/alerts'
+      preLoaderRoute: typeof AlertsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/ai': {
@@ -158,9 +258,14 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AiRoute: AiRoute,
+  AlertsRoute: AlertsRoute,
+  ArrheniusRoute: ArrheniusRoute,
   ControlRoute: ControlRoute,
+  EnergyRoute: EnergyRoute,
+  PredictionsRoute: PredictionsRoute,
   SensorsRoute: SensorsRoute,
   ShelfLifeRoute: ShelfLifeRoute,
+  TwinRoute: TwinRoute,
   ApiPublicIngestRoute: ApiPublicIngestRoute,
 }
 export const routeTree = rootRouteImport
