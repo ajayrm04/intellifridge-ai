@@ -72,11 +72,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "FRIGOS — Predictive Refrigeration Intelligence" },
+      { name: "description", content: "AI-powered cold-chain analytics: Arrhenius spoilage modelling, PID cooling control, and predictive shelf-life forecasting." },
+      { name: "author", content: "FRIGOS" },
+      { property: "og:title", content: "FRIGOS — Predictive Refrigeration Intelligence" },
+      { property: "og:description", content: "AI-powered cold-chain analytics dashboard." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:site", content: "@Lovable" },
@@ -108,12 +108,43 @@ function RootShell({ children }: { children: React.ReactNode }) {
   );
 }
 
+import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { AppSidebar } from "@/components/app-sidebar";
+import { Toaster } from "@/components/ui/sonner";
+import { useSimulationPump } from "@/hooks/use-simulation-pump";
+
+function SimulationPump() {
+  useSimulationPump(4000);
+  return null;
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <SidebarProvider>
+        <div className="flex min-h-screen w-full bg-background text-foreground">
+          <AppSidebar />
+          <div className="relative flex flex-1 flex-col">
+            <header className="sticky top-0 z-30 flex h-14 items-center gap-3 border-b border-border/60 bg-background/70 px-4 backdrop-blur-xl">
+              <SidebarTrigger className="-ml-1" />
+              <div className="flex items-center gap-2 text-xs uppercase tracking-[0.22em] text-muted-foreground">
+                <span className="relative flex h-2 w-2 text-primary pulse-dot"><span className="absolute inset-0 rounded-full bg-primary" /></span>
+                <span>Live telemetry</span>
+              </div>
+              <div className="ml-auto hidden text-[11px] text-muted-foreground sm:block">
+                Lovable Cloud · Arrhenius engine v1
+              </div>
+            </header>
+            <main className="relative z-10 flex-1 p-4 sm:p-6 lg:p-8">
+              <Outlet />
+            </main>
+          </div>
+          <SimulationPump />
+          <Toaster />
+        </div>
+      </SidebarProvider>
     </QueryClientProvider>
   );
 }
