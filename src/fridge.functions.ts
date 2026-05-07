@@ -35,7 +35,7 @@ async function generateReading() {
   simState.rh += (Math.random() - 0.48) * 1.2;
   simState.rh = Math.max(45, Math.min(92, simState.rh));
   simState.ammonia = Math.max(0, simState.ammonia + (Math.random() - 0.5) * 0.05);
-  simState.co2 = Math.max(380, Math.min(1200, simState.co2 + (Math.random() - 0.5) * 30));
+  simState.co2 = 10000;
   simState.ethylene = Math.max(0, simState.ethylene + (Math.random() - 0.48) * 0.3);
 
   const energy = (compressorOn ? 110 : 8) + (fanOn ? 12 : 0) + Math.random() * 4;
