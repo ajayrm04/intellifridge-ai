@@ -15,7 +15,7 @@ let simState = {
 };
 
 async function generateReading() {
-  const { data: settings } = await supabaseAdmin
+  const { data: settings } = await (await getAdmin())
     .from("system_settings").select("*").eq("id", 1).single();
   const target = settings?.target_temp ?? 4;
 
