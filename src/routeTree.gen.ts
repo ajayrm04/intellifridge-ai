@@ -9,13 +9,31 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ShelfLifeRouteImport } from './routes/shelf-life'
 import { Route as SensorsRouteImport } from './routes/sensors'
+import { Route as ControlRouteImport } from './routes/control'
+import { Route as AiRouteImport } from './routes/ai'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ApiPublicIngestRouteImport } from './routes/api/public/ingest'
 
+const ShelfLifeRoute = ShelfLifeRouteImport.update({
+  id: '/shelf-life',
+  path: '/shelf-life',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SensorsRoute = SensorsRouteImport.update({
   id: '/sensors',
   path: '/sensors',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ControlRoute = ControlRouteImport.update({
+  id: '/control',
+  path: '/control',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AiRoute = AiRouteImport.update({
+  id: '/ai',
+  path: '/ai',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -31,41 +49,93 @@ const ApiPublicIngestRoute = ApiPublicIngestRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/ai': typeof AiRoute
+  '/control': typeof ControlRoute
   '/sensors': typeof SensorsRoute
+  '/shelf-life': typeof ShelfLifeRoute
   '/api/public/ingest': typeof ApiPublicIngestRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/ai': typeof AiRoute
+  '/control': typeof ControlRoute
   '/sensors': typeof SensorsRoute
+  '/shelf-life': typeof ShelfLifeRoute
   '/api/public/ingest': typeof ApiPublicIngestRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/ai': typeof AiRoute
+  '/control': typeof ControlRoute
   '/sensors': typeof SensorsRoute
+  '/shelf-life': typeof ShelfLifeRoute
   '/api/public/ingest': typeof ApiPublicIngestRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/sensors' | '/api/public/ingest'
+  fullPaths:
+    | '/'
+    | '/ai'
+    | '/control'
+    | '/sensors'
+    | '/shelf-life'
+    | '/api/public/ingest'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/sensors' | '/api/public/ingest'
-  id: '__root__' | '/' | '/sensors' | '/api/public/ingest'
+  to:
+    | '/'
+    | '/ai'
+    | '/control'
+    | '/sensors'
+    | '/shelf-life'
+    | '/api/public/ingest'
+  id:
+    | '__root__'
+    | '/'
+    | '/ai'
+    | '/control'
+    | '/sensors'
+    | '/shelf-life'
+    | '/api/public/ingest'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AiRoute: typeof AiRoute
+  ControlRoute: typeof ControlRoute
   SensorsRoute: typeof SensorsRoute
+  ShelfLifeRoute: typeof ShelfLifeRoute
   ApiPublicIngestRoute: typeof ApiPublicIngestRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/shelf-life': {
+      id: '/shelf-life'
+      path: '/shelf-life'
+      fullPath: '/shelf-life'
+      preLoaderRoute: typeof ShelfLifeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/sensors': {
       id: '/sensors'
       path: '/sensors'
       fullPath: '/sensors'
       preLoaderRoute: typeof SensorsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/control': {
+      id: '/control'
+      path: '/control'
+      fullPath: '/control'
+      preLoaderRoute: typeof ControlRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/ai': {
+      id: '/ai'
+      path: '/ai'
+      fullPath: '/ai'
+      preLoaderRoute: typeof AiRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -87,7 +157,10 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AiRoute: AiRoute,
+  ControlRoute: ControlRoute,
   SensorsRoute: SensorsRoute,
+  ShelfLifeRoute: ShelfLifeRoute,
   ApiPublicIngestRoute: ApiPublicIngestRoute,
 }
 export const routeTree = rootRouteImport
