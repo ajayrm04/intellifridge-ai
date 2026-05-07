@@ -29,7 +29,7 @@ function PredictionsPage() {
               <YAxis stroke="oklch(0.7 0.02 250)" fontSize={11} unit="%" />
               <Tooltip contentStyle={{ background: "oklch(0.21 0.03 262)", border: "1px solid oklch(0.28 0.025 262)", borderRadius: 8, fontSize: 12 }} />
               <Legend wrapperStyle={{ fontSize: 11 }} />
-              {(data?.foods ?? []).map((name, i) => (
+              {(data?.foods ?? []).map((name: string, i: number) => (
                 <Line key={name} type="monotone" dataKey={name} stroke={COLORS[i % COLORS.length]} strokeWidth={2} dot={false} />
               ))}
             </LineChart>
