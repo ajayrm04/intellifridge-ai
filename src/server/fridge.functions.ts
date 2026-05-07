@@ -69,7 +69,7 @@ export const tickSimulation = createServerFn({ method: "POST" }).handler(async (
   const dtHours = 0.5;
   const { data: foods } = await (await getAdmin()).from("food_items").select("*");
   if (foods) {
-    for (const f of foods) {
+    for (const f of foods as any[]) {
       const delta = spoilageDelta({
         tempC: r.temperature, rh: r.humidity, ethylene: r.ethylene,
         category: f.category, baseShelfLifeHours: Number(f.base_shelf_life_hours),
@@ -125,7 +125,7 @@ export const getOverview = createServerFn({ method: "GET" }).handler(async () =>
   ]);
 
   const items = foods.data ?? [];
-  const enriched = items.map((f) => {
+  const enriched = items.map((f: any) => {
     const ratePerH = latest.data
       ? spoilageDelta({
           tempC: Number(latest.data.temperature),
@@ -146,7 +146,7 @@ export const getOverview = createServerFn({ method: "GET" }).handler(async () =>
   });
 
   const avgSpoilage = items.length
-    ? items.reduce((s, f) => s + Number(f.spoilage_pct), 0) / items.length
+    ? items.reduce((s: number, f: any) => s + Number(f.spoilage_pct), 0) / items.length
     : 0;
 
   return {
@@ -218,8 +218,8 @@ export const generateRecommendation = createServerFn({ method: "POST" }).handler
 
   const ctx = {
     latestReading: latest,
-    foodItems: foods?.map(f => ({ name: f.name, category: f.category, spoilage: f.spoilage_pct })),
-    activeAlerts: alerts?.map(a => `${a.severity}: ${a.message}`),
+    foodItems: foods?.map((f: any) => ({ name: f.name, category: f.category, spoilage: f.spoilage_pct })),
+    activeAlerts: alerts?.map((a: any) => `${a.severity}: ${a.message}`),
   };
 
   const res = await fetch("https://ai.gateway.lovable.dev/v1/chat/completions", {
@@ -262,7 +262,7 @@ export const getForecast = createServerFn({ method: "GET" }).handler(async () =>
   const points: Array<{ hour: number; [k: string]: number }> = [];
   for (let h = 0; h <= 24; h++) {
     const row: any = { hour: h };
-    for (const f of foods) {
+    for (const f of foods as any[]) {
       const rate = spoilageDelta({
         tempC: Number(latest.temperature), rh: Number(latest.humidity),
         ethylene: Number(latest.ethylene), category: f.category,
@@ -273,7 +273,7 @@ export const getForecast = createServerFn({ method: "GET" }).handler(async () =>
     }
     points.push(row);
   }
-  return { points, foods: foods.map(f => f.name) };
+  return { points, foods: foods.map((f: any) => f.name) };
 });
 
 // Arrhenius curve data
@@ -283,10 +283,10 @@ export const getArrheniusCurve = createServerFn({ method: "GET" }).handler(async
   for (let t = -5; t <= 25; t += 1) temps.push(t);
   const points = temps.map((t) => {
     const row: any = { temp: t };
-    for (const f of foods ?? []) {
+    for (const f of (foods ?? []) as any[]) {
       row[f.name] = +arrheniusRate(t, Number(f.activation_energy_kj)).toFixed(4);
     }
     return row;
   });
-  return { points, foods: foods?.map(f => f.name) ?? [] };
+  return { points, foods: foods?.map((f: any) => f.name) ?? [] };
 });
