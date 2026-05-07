@@ -14,7 +14,201 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      ai_recommendations: {
+        Row: {
+          created_at: string
+          generated_from: string | null
+          id: number
+          recommendation: string
+          related_item: string | null
+          severity: string
+        }
+        Insert: {
+          created_at?: string
+          generated_from?: string | null
+          id?: number
+          recommendation: string
+          related_item?: string | null
+          severity?: string
+        }
+        Update: {
+          created_at?: string
+          generated_from?: string | null
+          id?: number
+          recommendation?: string
+          related_item?: string | null
+          severity?: string
+        }
+        Relationships: []
+      }
+      alerts: {
+        Row: {
+          alert_type: string
+          created_at: string
+          id: number
+          message: string
+          resolved: boolean
+          severity: string
+        }
+        Insert: {
+          alert_type: string
+          created_at?: string
+          id?: number
+          message: string
+          resolved?: boolean
+          severity: string
+        }
+        Update: {
+          alert_type?: string
+          created_at?: string
+          id?: number
+          message?: string
+          resolved?: boolean
+          severity?: string
+        }
+        Relationships: []
+      }
+      control_logs: {
+        Row: {
+          cooling_level: number | null
+          created_at: string
+          id: number
+          pid_output: number | null
+          prev_temp: number | null
+          reason: string | null
+          target_temp: number | null
+        }
+        Insert: {
+          cooling_level?: number | null
+          created_at?: string
+          id?: number
+          pid_output?: number | null
+          prev_temp?: number | null
+          reason?: string | null
+          target_temp?: number | null
+        }
+        Update: {
+          cooling_level?: number | null
+          created_at?: string
+          id?: number
+          pid_output?: number | null
+          prev_temp?: number | null
+          reason?: string | null
+          target_temp?: number | null
+        }
+        Relationships: []
+      }
+      food_items: {
+        Row: {
+          activation_energy_kj: number
+          base_shelf_life_hours: number
+          category: string
+          id: string
+          last_updated: string
+          name: string
+          spoilage_pct: number
+          stored_at: string
+          zone_id: string
+        }
+        Insert: {
+          activation_energy_kj: number
+          base_shelf_life_hours: number
+          category: string
+          id?: string
+          last_updated?: string
+          name: string
+          spoilage_pct?: number
+          stored_at?: string
+          zone_id?: string
+        }
+        Update: {
+          activation_energy_kj?: number
+          base_shelf_life_hours?: number
+          category?: string
+          id?: string
+          last_updated?: string
+          name?: string
+          spoilage_pct?: number
+          stored_at?: string
+          zone_id?: string
+        }
+        Relationships: []
+      }
+      sensor_readings: {
+        Row: {
+          ammonia: number
+          co2: number
+          compressor_on: boolean
+          created_at: string
+          energy_w: number
+          ethylene: number
+          fan_on: boolean
+          humidity: number
+          id: number
+          temperature: number
+          zone_id: string
+        }
+        Insert: {
+          ammonia?: number
+          co2?: number
+          compressor_on?: boolean
+          created_at?: string
+          energy_w?: number
+          ethylene?: number
+          fan_on?: boolean
+          humidity: number
+          id?: number
+          temperature: number
+          zone_id?: string
+        }
+        Update: {
+          ammonia?: number
+          co2?: number
+          compressor_on?: boolean
+          created_at?: string
+          energy_w?: number
+          ethylene?: number
+          fan_on?: boolean
+          humidity?: number
+          id?: number
+          temperature?: number
+          zone_id?: string
+        }
+        Relationships: []
+      }
+      system_settings: {
+        Row: {
+          compressor_manual: boolean
+          fan_manual: boolean
+          id: number
+          kd: number
+          ki: number
+          kp: number
+          manual_override: boolean
+          target_temp: number
+        }
+        Insert: {
+          compressor_manual?: boolean
+          fan_manual?: boolean
+          id?: number
+          kd?: number
+          ki?: number
+          kp?: number
+          manual_override?: boolean
+          target_temp?: number
+        }
+        Update: {
+          compressor_manual?: boolean
+          fan_manual?: boolean
+          id?: number
+          kd?: number
+          ki?: number
+          kp?: number
+          manual_override?: boolean
+          target_temp?: number
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
