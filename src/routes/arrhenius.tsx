@@ -32,7 +32,7 @@ function ArrheniusPage() {
                 <Tooltip contentStyle={{ background: "oklch(0.21 0.03 262)", border: "1px solid oklch(0.28 0.025 262)", borderRadius: 8, fontSize: 12 }} />
                 <Legend wrapperStyle={{ fontSize: 11 }} />
                 <ReferenceLine x={4} stroke="oklch(0.85 0.18 165)" strokeDasharray="4 4" label={{ value: "Tref", fill: "oklch(0.85 0.18 165)", fontSize: 10 }} />
-                {(data?.foods ?? []).map((n, i) => (
+                {(data?.foods ?? []).map((n: string, i: number) => (
                   <Line key={n} type="monotone" dataKey={n} stroke={COLORS[i % COLORS.length]} strokeWidth={2} dot={false} />
                 ))}
               </LineChart>
