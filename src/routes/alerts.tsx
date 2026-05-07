@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion, AnimatePresence } from "framer-motion";
 import { AlertTriangle, Check, Bell } from "lucide-react";
 import { useLiveQuery } from "@/hooks/use-live-query";
-import { getOverview, resolveAlert } from "@/server/fridge.functions";
+import { getOverview, resolveAlert } from "@/fridge.functions";
 import { PageHeader, Panel } from "@/components/ui-bits";
 import { Button } from "@/components/ui/button";
 

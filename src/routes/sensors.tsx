@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Activity, Droplets, Wind, Zap, FlaskConical, Snowflake } from "lucide-react";
 import { LineChart, Line, ResponsiveContainer } from "recharts";
 import { useLiveQuery } from "@/hooks/use-live-query";
-import { getOverview } from "@/server/fridge.functions";
+import { getOverview } from "@/fridge.functions";
 import { PageHeader, Panel } from "@/components/ui-bits";
 
 export const Route = createFileRoute("/sensors")({

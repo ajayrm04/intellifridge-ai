@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Plus, Trash2, Timer } from "lucide-react";
 import { useLiveQuery } from "@/hooks/use-live-query";
-import { getOverview, addFoodItem, removeFoodItem } from "@/server/fridge.functions";
+import { getOverview, addFoodItem, removeFoodItem } from "@/fridge.functions";
 import { PageHeader, Panel } from "@/components/ui-bits";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

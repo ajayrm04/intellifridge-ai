@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { tickSimulation } from "@/server/fridge.functions";
+import { tickSimulation } from "@/fridge.functions";
 
 // Public ingest endpoint — ESP32 POSTs JSON OR cron triggers a simulation tick
 export const Route = createFileRoute("/api/public/ingest")({

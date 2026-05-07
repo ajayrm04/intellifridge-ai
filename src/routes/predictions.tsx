@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from "recharts";
 import { useLiveQuery } from "@/hooks/use-live-query";
-import { getForecast } from "@/server/fridge.functions";
+import { getForecast } from "@/fridge.functions";
 import { PageHeader, Panel } from "@/components/ui-bits";
 
 export const Route = createFileRoute("/predictions")({

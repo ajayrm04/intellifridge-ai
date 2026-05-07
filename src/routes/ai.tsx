@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Sparkles, Send, Bot } from "lucide-react";
 import { useLiveQuery } from "@/hooks/use-live-query";
-import { getRecommendations, generateRecommendation, getOverview } from "@/server/fridge.functions";
+import { getRecommendations, generateRecommendation, getOverview } from "@/fridge.functions";
 import { PageHeader, Panel } from "@/components/ui-bits";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";

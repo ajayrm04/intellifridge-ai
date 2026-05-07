@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Snowflake, Wind, Power, Save } from "lucide-react";
 import { useLiveQuery } from "@/hooks/use-live-query";
-import { getOverview, updateSettings } from "@/server/fridge.functions";
+import { getOverview, updateSettings } from "@/fridge.functions";
 import { PageHeader, Panel } from "@/components/ui-bits";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";

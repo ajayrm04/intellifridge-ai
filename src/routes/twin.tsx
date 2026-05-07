@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useLiveQuery } from "@/hooks/use-live-query";
-import { getOverview } from "@/server/fridge.functions";
+import { getOverview } from "@/fridge.functions";
 import { PageHeader, Panel } from "@/components/ui-bits";
 
 export const Route = createFileRoute("/twin")({

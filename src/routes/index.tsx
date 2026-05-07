@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Activity, Snowflake, Droplets, Zap, AlertTriangle, Wind, Bell, Sparkles } from "lucide-react";
 import { Area, AreaChart, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid } from "recharts";
 import { useLiveQuery } from "@/hooks/use-live-query";
-import { getOverview } from "@/server/fridge.functions";
+import { getOverview } from "@/fridge.functions";
 import { PageHeader, StatCard, Panel } from "@/components/ui-bits";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";

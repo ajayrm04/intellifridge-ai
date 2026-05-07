@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Area, AreaChart, ResponsiveContainer, Tooltip, XAxis, YAxis, CartesianGrid } from "recharts";
 import { useLiveQuery } from "@/hooks/use-live-query";
-import { getOverview } from "@/server/fridge.functions";
+import { getOverview } from "@/fridge.functions";
 import { PageHeader, Panel, StatCard } from "@/components/ui-bits";
 import { Zap, Snowflake } from "lucide-react";
 
